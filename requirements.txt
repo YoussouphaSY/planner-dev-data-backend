@@ -1,7 +1,7 @@
 pip>=25.2
 setuptools>=68
 wheel>=0.41
-htmlmin==0.1.12
+# htmlmin==0.1.12  <-- commenter ou supprimer si pas indispensable
 asgiref==3.9.1
 dj-database-url==3.0.1
 Django==5.2.4
@@ -12,4 +12,3 @@ psycopg2-binary==2.9.10
 PyJWT==2.10.1
 python-decouple==3.8
 sqlparse==0.5.3
-

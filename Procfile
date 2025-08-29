@@ -1,0 +1,1 @@
+web: gunicorn daily_360.wsgi:application

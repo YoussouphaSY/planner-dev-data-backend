@@ -5,6 +5,7 @@ from decouple import config
 from datetime import timedelta
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,6 +61,8 @@ from decouple import config
 #     }
 # }
 
+# Charge le fichier .env
+load_dotenv()
 
 DATABASES = {
     'default': dj_database_url.config(

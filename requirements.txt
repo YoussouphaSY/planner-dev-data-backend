@@ -222,3 +222,6 @@ widgetsnbextension==4.0.14
 wordcloud==1.9.4
 ydata-profiling==4.6.4
 yfinance==0.2.65
+pip>=25.2
+setuptools>=68
+wheel>=0.41

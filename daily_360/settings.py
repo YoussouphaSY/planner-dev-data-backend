@@ -99,7 +99,10 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  
+<<<<<<< HEAD
     # "https://planner-dev-data-front.vercel.app",
+=======
+>>>>>>> 2cb8b42cf021d0e1e6a49bc264e05aef08d329ad
     "https://planner-three-sooty.vercel.app"
 ]
 

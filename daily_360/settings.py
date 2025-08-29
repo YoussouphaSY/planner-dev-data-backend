@@ -4,6 +4,7 @@ import os
 from decouple import config
 from datetime import timedelta
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,17 +49,26 @@ ROOT_URLCONF = 'daily_360.urls'
 # Database
 from decouple import config
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST', default='localhost'),
+#         'PORT': config('DB_PORT', default='5432'),
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key-for-dev')
 
 # REST Framework
 REST_FRAMEWORK = {
@@ -81,9 +91,9 @@ SIMPLE_JWT = {
 }
 
 # CORS Settings
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # Angular dev server
-    "http://127.0.0.1:4200",
+    "https://planner-dev-data-front.vercel.app",
 ]
 
 # Internationalization
@@ -114,3 +124,7 @@ TEMPLATES = [
         },
     },
 ]
+
+ALLOWED_HOSTS = ['.onrender.com']  # Render génère une URL comme xyz.onrender.com
+# INSTALLED_APPS += ['corsheaders']
+# MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE

@@ -100,7 +100,8 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  
     # "https://planner-dev-data-front.vercel.app",
-    "https://planner360.vercel.app"
+    # "https://planner360.vercel.app"
+    "https://planning360.vercel.app/"
 ]
 
 # Internationalization

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from datetime import timedelta
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -19,12 +20,6 @@ class PlanningPeriod(models.Model):
 
     @property
     def statut(self):
-        """
-        Retourne l'état de la période :
-        - "actif" : si la date n’est pas expirée
-        - "termine" : si expirée et toutes les tâches sont terminées
-        - "en_retard" : si expirée et certaines tâches ne sont pas terminées
-        """
         today = timezone.now().date()
 
         # Si pas encore expiré → actif
@@ -37,6 +32,12 @@ class PlanningPeriod(models.Model):
             return "termine"
         return "retard"
 
+    def clean(self):
+        """
+        Validation personnalisée pour s’assurer que la période dure exactement 5 jours.
+        """
+        if (self.date_fin - self.date_debut).days != 4:  # 4 jours d’écart = 5 jours inclus
+            raise ValidationError("Une période doit durer exactement 5 jours.")
 
 class Planning(models.Model):
     JOUR_CHOICES = [
